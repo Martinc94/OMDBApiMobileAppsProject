@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,7 @@ namespace OMDBApiMobileAppsProject.Data
                             break;
                     } // end switch
                 } // end foreach(var key in oneMovie.Keys )
+                //Debug.WriteLine("Title: "+nMovie.title);
                 movieList.Add(nMovie);
             } // end foreach (var item in jMovieList)
 

@@ -12,6 +12,7 @@ namespace OMDBApiMobileAppsProject.Models
     {
         public static List<Movie> movieList = new List<Movie>();
         public List<Movie> Titles { get; set; }
+        public string title { get; set; }
 
         public Movies()
         {
@@ -33,7 +34,7 @@ namespace OMDBApiMobileAppsProject.Models
             CreateMovieList(jMovieList);
 
             //output to console
-            System.Diagnostics.Debug.Write(jMovieList.ToString());
+            //System.Diagnostics.Debug.Write(jMovieList.ToString());
         }
 
         private static void CreateMovieList(JsonArray jMovieList)

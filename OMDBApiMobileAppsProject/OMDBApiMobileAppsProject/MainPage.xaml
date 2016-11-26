@@ -7,7 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="Red">
+
+        <Button x:Name="MyMovies" x:Uid="btnMov" Grid.Row="1" Background="Gray" FontSize="40" FontFamily="arial"  VerticalAlignment="Center" HorizontalAlignment="Center" Click="MyMovies_Click">My Movies</Button>
 
     </Grid>
 </Page>

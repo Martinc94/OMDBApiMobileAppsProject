@@ -17,6 +17,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="0.5*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -29,7 +30,7 @@
             <TextBlock>My Movie List</TextBlock>
         </StackPanel>
 
-        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical">
+        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
             <ListView  x:Name="MainList" 
               ItemsSource="{x:Bind viewTitles.Titles, Mode=OneWay}"  
               SelectedIndex="{x:Bind viewTitles.SelectedIndex, Mode=TwoWay}" 
@@ -43,7 +44,7 @@
             <Button Content="Add" Click="{x:Bind  viewTitles.Add}" Margin="5"/>
         </StackPanel>
 
-        <StackPanel x:Name="myPanel" Grid.Column="2" Grid.Row="1" Orientation="Vertical" Visibility="{x:Bind viewTitles.SelectedMovie, Mode=OneWay,Converter={StaticResource ObjectExistsToVisible}}" >
+        <StackPanel x:Name="myPanel" Grid.Column="1" Grid.Row="1" Orientation="Vertical" Visibility="{x:Bind viewTitles.SelectedMovie, Mode=OneWay,Converter={StaticResource ObjectExistsToVisible}}" >
             <StackPanel>
                 <TextBlock>Title:</TextBlock>
                 <TextBox Text="{x:Bind viewTitles.SelectedMovie.Title, Mode=TwoWay, FallbackValue=''}" Margin="5" />

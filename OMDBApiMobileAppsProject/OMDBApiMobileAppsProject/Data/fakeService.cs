@@ -38,7 +38,7 @@ namespace OMDBApiMobileAppsProject.Data
 
                     switch (key)
                     {
-                        case "title":
+                        case "Title":
                             nMovie.title = value.GetString();
                             break;
                         case "year":
@@ -55,7 +55,7 @@ namespace OMDBApiMobileAppsProject.Data
                             break;
                     } // end switch
                 } // end foreach(var key in oneMovie.Keys )
-                //Debug.WriteLine("Title: "+nMovie.title);
+                Debug.WriteLine("Title: "+nMovie.title);
                 movieList.Add(nMovie);
             } // end foreach (var item in jMovieList)
 

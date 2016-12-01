@@ -32,5 +32,9 @@ namespace OMDBApiMobileAppsProject
             this.Frame.Navigate(typeof(MyMovies));
         }
 
+        private void SearchMovies_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

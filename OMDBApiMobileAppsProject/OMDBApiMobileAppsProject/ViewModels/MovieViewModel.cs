@@ -33,7 +33,7 @@ namespace OMDBApiMobileAppsProject.ViewModels
             set { SetProperty(This.rated, value, () => This.rated = value); }
         }
 
-        public String released
+        public String Released
         {
             get { return This.released; }
             set { SetProperty(This.released, value, () => This.released = value); }

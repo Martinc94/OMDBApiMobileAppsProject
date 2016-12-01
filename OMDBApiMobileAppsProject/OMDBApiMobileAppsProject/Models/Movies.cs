@@ -52,19 +52,19 @@ namespace OMDBApiMobileAppsProject.Models
 
                     switch (key)
                     {
-                        case "title":
+                        case "Title":
                             nMovie.title = value.GetString();
                             break;
-                        case "year":
+                        case "Year":
                             nMovie.year = value.GetString();
                             break;
-                        case "rated":
+                        case "Rated":
                             nMovie.rated = value.GetString();
                             break;
-                        case "released":
+                        case "Released":
                             nMovie.released = value.GetString();
                             break;
-                        case "genre":
+                        case "Genre":
                             nMovie.genre = value.GetString();
                             break;
                     } // end switch

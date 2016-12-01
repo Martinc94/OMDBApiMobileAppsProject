@@ -28,15 +28,14 @@ namespace OMDBApiMobileAppsProject.ViewModels
             }
         }
 
-        ObservableCollection<MovieViewModel> _Mov
-           = new ObservableCollection<MovieViewModel>();
+        ObservableCollection<MovieViewModel> _Mov = new ObservableCollection<MovieViewModel>();
         public ObservableCollection<MovieViewModel> Titles
         {
             get { return _Mov; }
             set { SetProperty(ref _Mov, value); }
         }
 
-        String _MovieTitle;
+        //String _MovieTitle;
         public String MovieTitle
         {
             get { return myMovie.title; }
@@ -71,7 +70,7 @@ namespace OMDBApiMobileAppsProject.ViewModels
         {
             if (SelectedIndex != -1)
             {
-                var mov = MovieTitle[SelectedIndex];
+                var mov = Titles[SelectedIndex];
                 Titles.RemoveAt(SelectedIndex);
                // myMovie.Delete(person);
             }

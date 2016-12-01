@@ -46,10 +46,7 @@ namespace OMDBApiMobileAppsProject.Data
                             break;
                         case "rated":
                             nMovie.rated = value.GetString();
-                            break;
-                        case "released":
-                            nMovie.released = value.GetString();
-                            break;
+                            break;                       
                         case "genre":
                             nMovie.genre = value.GetString();
                             break;

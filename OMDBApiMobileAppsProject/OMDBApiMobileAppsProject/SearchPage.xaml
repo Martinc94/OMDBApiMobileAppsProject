@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="OMDBApiMobileAppsProject.SearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:OMDBApiMobileAppsProject"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="Red">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".5*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Grid/>
+
+        <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontFamily="arial">Search Movies</TextBlock>
+
+        <StackPanel Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Margin="5">Enter Title to Search:</TextBlock>
+                <TextBox HorizontalAlignment="Stretch" Margin="5"></TextBox>
+                <Button HorizontalAlignment="Center">Search</Button>
+            </StackPanel>
+                
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <StackPanel>
+                <TextBlock x:Name="Title" HorizontalAlignment="Center" Margin="5"></TextBlock>
+                <TextBlock x:Name="Year" HorizontalAlignment="Center" Margin="5"></TextBlock>
+                <TextBlock x:Name="Rated" HorizontalAlignment="Center" Margin="5"></TextBlock>
+                <TextBlock x:Name="Runtime" HorizontalAlignment="Center" Margin="5"></TextBlock>
+                <TextBlock x:Name="Genre" HorizontalAlignment="Center" Margin="5"></TextBlock>
+                <TextBlock x:Name="Director" HorizontalAlignment="Center" Margin="5"></TextBlock>
+                <TextBlock x:Name="Writer" HorizontalAlignment="Center" Margin="5"></TextBlock>
+                <TextBlock x:Name="Actors" HorizontalAlignment="Center" Margin="5"></TextBlock>
+                <TextBlock x:Name="Plot" HorizontalAlignment="Center" Margin="5"></TextBlock>
+                <TextBlock x:Name="Language" HorizontalAlignment="Center" Margin="5"></TextBlock>
+                <TextBlock x:Name="Country" HorizontalAlignment="Center" Margin="5"></TextBlock>
+                <TextBlock x:Name="Awards" HorizontalAlignment="Center" Margin="5"></TextBlock>
+                <TextBlock x:Name="Poster" HorizontalAlignment="Center" Margin="5"></TextBlock>
+                <TextBlock x:Name="Metascore" HorizontalAlignment="Center" Margin="5"></TextBlock>
+                <TextBlock x:Name="imdbRating" HorizontalAlignment="Center" Margin="5"></TextBlock>
+
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Page>

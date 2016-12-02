@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OMDBApiMobileAppsProject.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace OMDBApiMobileAppsProject
         public SearchPage()
         {
             this.InitializeComponent();
+            SearchMovieService sm = new SearchMovieService();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OMDBApiMobileAppsProject.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace OMDBApiMobileAppsProject
 
         private void SearchMovies_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(SearchPage));
         }
     }
 }

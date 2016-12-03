@@ -5,13 +5,19 @@
     xmlns:local="using:OMDBApiMobileAppsProject"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:viewModels="using:OMDBApiMobileAppsProject.ViewModels"
+    xmlns:converters="using:OMDBApiMobileAppsProject.Converters">
+
+    <Page.Resources>
+        <converters:ObjectExistsToVisible x:Key="ObjectExistsToVisible" />
+    </Page.Resources>
 
     <Grid Background="Red">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width=".5*" />
-            <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="2*" />
+            
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -21,37 +27,116 @@
         </Grid.RowDefinitions>
         <Grid/>
 
-        <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontFamily="arial">Search Movies</TextBlock>
+        <StackPanel Grid.ColumnSpan="2">
+            <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontFamily="arial">Search Movies</TextBlock>
+        </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center" >
+        <StackPanel Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2">
             <StackPanel>
                 <TextBlock HorizontalAlignment="Center" Margin="5">Enter Title to Search:</TextBlock>
-                <TextBox HorizontalAlignment="Stretch" Margin="5"></TextBox>
-                <Button HorizontalAlignment="Center">Search</Button>
+                <TextBox x:Name="txbSearchTitle" HorizontalAlignment="Stretch" Margin="5"></TextBox>
+                <Button HorizontalAlignment="Center" Click="Search_Click">Search</Button>
+                <TextBlock x:Name="infoLbl" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="arial"></TextBlock>
+                <TextBlock x:Name="errorLbl" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="arial"></TextBlock>
             </StackPanel>
-                
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center" >
-            <StackPanel>
-                <TextBlock x:Name="Title" HorizontalAlignment="Center" Margin="5"></TextBlock>
-                <TextBlock x:Name="Year" HorizontalAlignment="Center" Margin="5"></TextBlock>
-                <TextBlock x:Name="Rated" HorizontalAlignment="Center" Margin="5"></TextBlock>
-                <TextBlock x:Name="Runtime" HorizontalAlignment="Center" Margin="5"></TextBlock>
-                <TextBlock x:Name="Genre" HorizontalAlignment="Center" Margin="5"></TextBlock>
-                <TextBlock x:Name="Director" HorizontalAlignment="Center" Margin="5"></TextBlock>
-                <TextBlock x:Name="Writer" HorizontalAlignment="Center" Margin="5"></TextBlock>
-                <TextBlock x:Name="Actors" HorizontalAlignment="Center" Margin="5"></TextBlock>
-                <TextBlock x:Name="Plot" HorizontalAlignment="Center" Margin="5"></TextBlock>
-                <TextBlock x:Name="Language" HorizontalAlignment="Center" Margin="5"></TextBlock>
-                <TextBlock x:Name="Country" HorizontalAlignment="Center" Margin="5"></TextBlock>
-                <TextBlock x:Name="Awards" HorizontalAlignment="Center" Margin="5"></TextBlock>
-                <TextBlock x:Name="Poster" HorizontalAlignment="Center" Margin="5"></TextBlock>
-                <TextBlock x:Name="Metascore" HorizontalAlignment="Center" Margin="5"></TextBlock>
-                <TextBlock x:Name="imdbRating" HorizontalAlignment="Center" Margin="5"></TextBlock>
-
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="3">
+            <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
+                <ListView  x:Name="MainList" 
+              ItemsSource="{x:Bind viewTitles.Titles, Mode=OneWay}"  
+              SelectedIndex="{x:Bind viewTitles.SelectedIndex, Mode=TwoWay}" 
+              MinWidth="250" Margin="5">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="viewModels:MovieViewModel" >
+                            <TextBlock Text="{x:Bind Title, Mode=OneWay}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackPanel>
+            </ScrollViewer>
 
-        </StackPanel>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel x:Name="myPanel" Grid.Column="1" Grid.Row="1" Orientation="Vertical" Visibility="{x:Bind viewTitles.SelectedMovie, Mode=OneWay,Converter={StaticResource ObjectExistsToVisible}}" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" MinWidth="70">Title:</TextBlock>
+                    <TextBox Text="{x:Bind viewTitles.SelectedMovie.Title, Mode=TwoWay, FallbackValue=''}" Margin="5" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" MinWidth="70">Year:</TextBlock>
+                    <TextBox Text="{x:Bind viewTitles.SelectedMovie.Year, Mode=TwoWay, FallbackValue='0'}"  Margin="5" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" MinWidth="70">Rated:</TextBlock>
+                    <TextBox Text="{x:Bind viewTitles.SelectedMovie.Rated, Mode=TwoWay, FallbackValue='0'}"  Margin="5" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" MinWidth="70">Runtime:</TextBlock>
+                    <TextBox Text="{x:Bind viewTitles.SelectedMovie.Runtime, Mode=TwoWay, FallbackValue='0'}" Margin="5" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" MinWidth="70">Genre:</TextBlock>
+                    <TextBox  Text="{x:Bind viewTitles.SelectedMovie.Genre, Mode=TwoWay, FallbackValue=''}"  Margin="5" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" MinWidth="70">Director:</TextBlock>
+                    <TextBox  Text="{x:Bind viewTitles.SelectedMovie.Director, Mode=TwoWay, FallbackValue=''}"  Margin="5" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" MinWidth="70">Writer:</TextBlock>
+                    <TextBox  Text="{x:Bind viewTitles.SelectedMovie.Writer, Mode=TwoWay, FallbackValue=''}"  Margin="5" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" MinWidth="70">Actors:</TextBlock>
+                    <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" 
+        MinWidth="15" MinHeight="20" MaxWidth="500" MaxHeight="50" Text="{x:Bind viewTitles.SelectedMovie.Actors, Mode=TwoWay, FallbackValue=''}"  Margin="5" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" MinWidth="70" >Plot:</TextBlock>
+                    <TextBox HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" 
+        MinWidth="15" MinHeight="20" MaxWidth="500" MaxHeight="50" Text="{x:Bind viewTitles.SelectedMovie.Plot, Mode=TwoWay, FallbackValue=''}"  Margin="5" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" MinWidth="70">Language:</TextBlock>
+                    <TextBox  Text="{x:Bind viewTitles.SelectedMovie.Language, Mode=TwoWay, FallbackValue=''}"  Margin="5" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" MinWidth="70">Country:</TextBlock>
+                    <TextBox  Text="{x:Bind viewTitles.SelectedMovie.Country, Mode=TwoWay, FallbackValue=''}"  Margin="5" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" MinWidth="70">Awards:</TextBlock>
+                    <TextBox  Text="{x:Bind viewTitles.SelectedMovie.Awards, Mode=TwoWay, FallbackValue=''}"  Margin="5" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" MinWidth="70">Metascore:</TextBlock>
+                    <TextBox  Text="{x:Bind viewTitles.SelectedMovie.Metascore, Mode=TwoWay, FallbackValue=''}"  Margin="5" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Margin="5" MinWidth="70">imdbRating:</TextBlock>
+                    <TextBox  Text="{x:Bind viewTitles.SelectedMovie.imdbRating, Mode=TwoWay, FallbackValue=''}"  Margin="5" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Save To My Movies" Click="{x:Bind  viewTitles.SaveNew}" Margin="5"/>
+                    <!--<Button Content="Delete" Click="{x:Bind viewTitles.Delete}" Margin="5" />-->
+                    <Image Source="{x:Bind viewTitles.SelectedMovie.Poster, Mode=OneWay,FallbackValue='Assets/SplashScreen.png'}" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" Grid.Column="2" Grid.Row="1"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+
+       
     </Grid>
 </Page>

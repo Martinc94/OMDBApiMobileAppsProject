@@ -1,6 +1,7 @@
 ﻿using OMDBApiMobileAppsProject.Data;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.Data.Json;
@@ -22,20 +23,7 @@ namespace OMDBApiMobileAppsProject.Models
 
         public static async Task LoadData()
         {
-            //await LoadLocalData();
             await LoadLocalMovies(); 
-        }
-
-        public static async Task LoadLocalData()
-        {
-            var file = await Package.Current.InstalledLocation.GetFileAsync("Data\\myMovies.txt");
-            var result = await FileIO.ReadTextAsync(file);
-
-            var jMovieList = JsonArray.Parse(result);
-            CreateMovieList(jMovieList);
-
-            //output to console
-            //System.Diagnostics.Debug.Write(jMovieList.ToString());
         }
 
         public static async Task LoadLocalMovies()
@@ -44,11 +32,7 @@ namespace OMDBApiMobileAppsProject.Models
             StorageFile movieFile;
 
             //get movies
-            // movieFile = await storageFolder.GetFileAsync("myMovies.txt");
             movieFile = await storageFolder.CreateFileAsync("MyMovies.txt", CreationCollisionOption.OpenIfExists);
-
-            System.Diagnostics.Debug.WriteLine(Windows.Storage.ApplicationData.Current.LocalFolder.Path);
-
             string movieJson = await Windows.Storage.FileIO.ReadTextAsync(movieFile);
 
             var jMovieList = JsonArray.Parse(movieJson);
@@ -124,8 +108,10 @@ namespace OMDBApiMobileAppsProject.Models
 
         public void Add(Movie movie)
         {
+            Debug.WriteLine("[IN ADD]: ");
             if (!Titles.Contains(movie))
             {
+                Debug.WriteLine("[IN ADD IF]: ");
                 movie.poster = "";
                 Titles.Add(movie);
                 //FakeService.Write(movie);
@@ -146,7 +132,7 @@ namespace OMDBApiMobileAppsProject.Models
             //FakeService.Write(movie);
         }//end update
 
-}//end Movies
+    }//end Movies
 }
 
 

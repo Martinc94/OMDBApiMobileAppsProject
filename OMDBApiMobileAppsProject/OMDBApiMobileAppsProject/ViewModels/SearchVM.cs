@@ -11,25 +11,26 @@ using System.Threading.Tasks;
 
 namespace OMDBApiMobileAppsProject.ViewModels
 {
-    public class TitleVM : Helper.NotificationBase
+    public class SearchVM : Helper.NotificationBase
     {
-        Movies myMovie;
+        SearchMovieService myMovie;
 
-        public TitleVM()
+        public SearchVM()
         {
-            myMovie = new Movies();
+            myMovie = new SearchMovieService();
             _SelectedIndex = -1;
             // Load the database
             foreach (var myMovie in myMovie.Titles)
             {
                 var np = new MovieViewModel(myMovie);
                 np.PropertyChanged += Movie_OnNotifyPropertyChanged;
-               // System.Diagnostics.Debug.WriteLine(np.released.ToString());
+                // System.Diagnostics.Debug.WriteLine(np.released.ToString());
                 _Mov.Add(np);
             }
         }
 
         ObservableCollection<MovieViewModel> _Mov = new ObservableCollection<MovieViewModel>();
+
         public ObservableCollection<MovieViewModel> Titles
         {
             get { return _Mov; }
@@ -73,7 +74,7 @@ namespace OMDBApiMobileAppsProject.ViewModels
             {
                 var mov = Titles[SelectedIndex];
                 Titles.RemoveAt(SelectedIndex);
-               // myMovie.Delete(person);
+                // myMovie.Delete(person);
             }
         }
 
@@ -92,7 +93,36 @@ namespace OMDBApiMobileAppsProject.ViewModels
 
         void Movie_OnNotifyPropertyChanged(Object sender, PropertyChangedEventArgs e)
         {
-           // myMovie.Update((MovieViewModel)sender);
+             myMovie.Update((MovieViewModel)sender);
         }
+
+
+        public async Task Refresh()
+        {
+            //Debug.WriteLine("[REFRESH]");
+            //notify view 
+            foreach (var myMovie in myMovie.Titles)
+             {
+                 var np = new MovieViewModel(myMovie);
+                 np.PropertyChanged += Movie_OnNotifyPropertyChanged;
+                 Titles.Clear();
+                 Titles.Add(np); 
+            }
+
+        }//end refresh
+
+        public void SaveNew() {
+            if (SelectedIndex != -1)
+            {
+                var mov = Titles[SelectedIndex];
+                //Titles.RemoveAt(SelectedIndex);
+                // myMovie.Delete(person);
+                Debug.WriteLine("Save to local");
+                Debug.WriteLine(mov.Title);
+
+            }
+        }
+
+
     }
 }

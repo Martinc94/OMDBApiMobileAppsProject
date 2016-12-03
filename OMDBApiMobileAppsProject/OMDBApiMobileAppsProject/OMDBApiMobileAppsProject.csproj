@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="ViewModels\Helpers.cs" />
     <Compile Include="ViewModels\MovieViewModel.cs" />
+    <Compile Include="ViewModels\SearchVM.cs" />
     <Compile Include="ViewModels\TitleVM.cs" />
   </ItemGroup>
   <ItemGroup>

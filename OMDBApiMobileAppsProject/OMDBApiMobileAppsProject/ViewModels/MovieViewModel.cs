@@ -1,7 +1,9 @@
 ﻿using OMDBApiMobileAppsProject.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +15,7 @@ namespace OMDBApiMobileAppsProject.ViewModels
         public String Title
         {
             get { return This.title; }
-            set { SetProperty(This.title, value, () => This.title = value); }
+            set { SetProperty(This.title, value, () => This.title = value);}
         }
         public String Year
         {
@@ -97,6 +99,5 @@ namespace OMDBApiMobileAppsProject.ViewModels
             get { return This.imdbRating; }
             set { SetProperty(This.imdbRating, value, () => This.imdbRating = value); }
         }
-
     }
 }

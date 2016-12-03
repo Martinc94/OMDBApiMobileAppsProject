@@ -21,8 +21,7 @@ namespace OMDBApiMobileAppsProject
     {
         public MyMovies()
         {
-            this.InitializeComponent();
-            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            this.InitializeComponent();  
             viewTitles = new TitleVM();
 
         }

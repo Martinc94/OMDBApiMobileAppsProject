@@ -1,4 +1,4 @@
-# OMDB Api 
+# Windows Universal App using the Omdb Api and MVVM
 ###### Martin Coleman, G00312351
 Fourth Year Mobile Apps Project 
 
@@ -97,10 +97,10 @@ Example of Json Stored Object
 ```
 
 ## Json.Net 
-I used in this project as it handles serialisation and deserialisation very well.
+I used Json.Net by newtonsoft in this project as it handles serialisation and deserialisation very well.
 I use it to convert my Movie model classes into Json Strings for saving to local to local storage.
 <br>
 http://www.newtonsoft.com/json
 
-#Project Management
+##Project Management
 I used GitHub for managing the projects source control and issue tracking.

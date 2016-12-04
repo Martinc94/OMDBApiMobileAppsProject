@@ -1,10 +1,12 @@
-﻿using System;
+﻿using OMDBApiMobileAppsProject.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,6 +27,16 @@ namespace OMDBApiMobileAppsProject
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private void MyMovies_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MyMovies));
+        }
+
+        private void SearchMovies_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SearchPage));
         }
     }
 }

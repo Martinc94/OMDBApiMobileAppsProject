@@ -7,7 +7,24 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="Red">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".5*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Grid/>
+
+        <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" FontFamily="arial">My Movies</TextBlock>
+        
+        <StackPanel Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Button x:Name="SearchMovies" x:Uid="btnSearchMov" Grid.Row="1" Background="Gray" FontSize="30" FontFamily="arial"  VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10" Click="SearchMovies_Click">Search Movies</Button>
+            <Button x:Name="MyMovies" x:Uid="btnMov" Grid.Row="1" Background="Gray" FontSize="30" FontFamily="arial"  VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10" Click="MyMovies_Click">My Movies</Button>
+        </StackPanel>
     </Grid>
 </Page>

@@ -14,85 +14,85 @@ namespace OMDBApiMobileAppsProject.ViewModels
         public MovieViewModel(Movie movie = null) : base(movie) { }
         public String Title
         {
-            get { return This.title; }
-            set { SetProperty(This.title, value, () => This.title = value);}
+            get { return This.Title; }
+            set { SetProperty(This.Title, value, () => This.Title = value);}
         }
         public String Year
         {
-            get { return This.year; }
-            set { SetProperty(This.year, value, () => This.year = value); }
+            get { return This.Year; }
+            set { SetProperty(This.Year, value, () => This.Year = value); }
         }
 
         public String Rated
         {
-            get { return This.rated; }
-            set { SetProperty(This.rated, value, () => This.rated = value); }
+            get { return This.Rated; }
+            set { SetProperty(This.Rated, value, () => This.Rated = value); }
         }
 
         public String Runtime
         {
-            get { return This.runtime; }
-            set { SetProperty(This.runtime, value, () => This.runtime = value); }
+            get { return This.Runtime; }
+            set { SetProperty(This.Runtime, value, () => This.Runtime = value); }
         }
 
         public String Genre
         {
-            get { return This.genre; }
-            set { SetProperty(This.genre, value, () => This.genre = value); }
+            get { return This.Genre; }
+            set { SetProperty(This.Genre, value, () => This.Genre = value); }
         }
 
         public String Director
         {
-            get { return This.director; }
-            set { SetProperty(This.director, value, () => This.director = value); }
+            get { return This.Director; }
+            set { SetProperty(This.Director, value, () => This.Director = value); }
         }
 
         public String Writer
         {
-            get { return This.writer; }
-            set { SetProperty(This.writer, value, () => This.writer = value); }
+            get { return This.Writer; }
+            set { SetProperty(This.Writer, value, () => This.Writer = value); }
         }
         public String Actors
         {
-            get { return This.actors; }
-            set { SetProperty(This.actors, value, () => This.actors = value); }
+            get { return This.Actors; }
+            set { SetProperty(This.Actors, value, () => This.Actors = value); }
         }
         public String Plot
         {
-            get { return This.plot; }
-            set { SetProperty(This.plot, value, () => This.plot = value); }
+            get { return This.Plot; }
+            set { SetProperty(This.Plot, value, () => This.Plot = value); }
         }
         public String Language
         {
-            get { return This.language; }
-            set { SetProperty(This.language, value, () => This.language = value); }
+            get { return This.Language; }
+            set { SetProperty(This.Language, value, () => This.Language = value); }
         }
         public String Country
         {
-            get { return This.country; }
-            set { SetProperty(This.country, value, () => This.country = value); }
+            get { return This.Country; }
+            set { SetProperty(This.Country, value, () => This.Country = value); }
         }
             public String Awards
         {
-            get { return This.awards; }
-            set { SetProperty(This.awards, value, () => This.awards = value); }
+            get { return This.Awards; }
+            set { SetProperty(This.Awards, value, () => This.Awards = value); }
         }
         public String Poster
         {
             get{
-                string pos = This.poster;
+                string pos = This.Poster;
                 //if adding new Movie poster will be null(null will cause error when binding)
                 if (pos==""||pos==null) {
                     pos = " ";
                 }
                 return pos;
             }
-            set { SetProperty(This.poster, value, () => This.poster = value); }
+            set { SetProperty(This.Poster, value, () => This.Poster = value); }
         }
         public String Metascore
         {
-            get { return This.metascore; }
-            set { SetProperty(This.metascore, value, () => This.metascore = value); }
+            get { return This.Metascore; }
+            set { SetProperty(This.Metascore, value, () => This.Metascore = value); }
         }
         public String imdbRating
         {

@@ -43,6 +43,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <Button Content="Add" Click="{x:Bind  viewTitles.Add}" Margin="5"/>
+                <Button Content="Save All" Click="{x:Bind  viewTitles.SaveAll}" Margin="5"/>
             </StackPanel>
         </ScrollViewer>
 

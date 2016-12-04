@@ -96,7 +96,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\ObjectExistsToVisible.cs" />
-    <Compile Include="Data\fakeService.cs" />
     <Compile Include="Data\Movie.cs" />
     <Compile Include="Data\SearchMovieService.cs" />
     <Compile Include="MainPage.xaml.cs">

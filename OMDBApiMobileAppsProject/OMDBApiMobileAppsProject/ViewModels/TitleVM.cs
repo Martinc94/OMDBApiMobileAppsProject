@@ -23,8 +23,7 @@ namespace OMDBApiMobileAppsProject.ViewModels
             foreach (var myMovie in myMovie.Titles)
             {
                 var np = new MovieViewModel(myMovie);
-                np.PropertyChanged += Movie_OnNotifyPropertyChanged;
-               // System.Diagnostics.Debug.WriteLine(np.released.ToString());
+                np.PropertyChanged += Movie_OnNotifyPropertyChanged; 
                 _Mov.Add(np);
             }
         }
@@ -36,7 +35,6 @@ namespace OMDBApiMobileAppsProject.ViewModels
             set { SetProperty(ref _Mov, value); }
         }
 
-        //String _MovieTitle;
         public String MovieTitle
         {
             get { return myMovie.title; }
@@ -63,7 +61,7 @@ namespace OMDBApiMobileAppsProject.ViewModels
             var nMovie = new MovieViewModel();
             nMovie.PropertyChanged += Movie_OnNotifyPropertyChanged;
             Titles.Add(nMovie);
-            //myMovie.Add(nMovie);
+            myMovie.Add(nMovie);
             SelectedIndex = Titles.IndexOf(nMovie);
         }
 
@@ -71,10 +69,12 @@ namespace OMDBApiMobileAppsProject.ViewModels
         {
             if (SelectedIndex != -1)
             {
+                Debug.WriteLine("Deleting: "+Titles[SelectedIndex].Title);
                 var mov = Titles[SelectedIndex];
+                myMovie.Titles.RemoveAt(SelectedIndex);
                 Titles.RemoveAt(SelectedIndex);
-               // myMovie.Delete(person);
-            }
+            }  
+
         }
 
         public void Save()
@@ -82,17 +82,24 @@ namespace OMDBApiMobileAppsProject.ViewModels
             if (SelectedIndex != -1)
             {
                 var mov = Titles[SelectedIndex];
-                //Titles.RemoveAt(SelectedIndex);
-                // myMovie.Delete(person);
-                Debug.WriteLine("Save to local");
-                Debug.WriteLine(mov.Title);
-
             }
-        }
+        }//end Save
+
+        public void SaveAll()
+        {
+            Debug.WriteLine("SaveAll");
+            myMovie.SaveAll();
+        }//end saveAll
 
         void Movie_OnNotifyPropertyChanged(Object sender, PropertyChangedEventArgs e)
         {
            // myMovie.Update((MovieViewModel)sender);
         }
+
+        public void Clear()
+        {
+            
+        }
+
     }
 }

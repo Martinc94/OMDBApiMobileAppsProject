@@ -24,7 +24,6 @@ namespace OMDBApiMobileAppsProject.ViewModels
             {
                 var np = new MovieViewModel(myMovie);
                 np.PropertyChanged += Movie_OnNotifyPropertyChanged;
-                // System.Diagnostics.Debug.WriteLine(np.released.ToString());
                 _Mov.Add(np);
             }
         }
@@ -37,7 +36,6 @@ namespace OMDBApiMobileAppsProject.ViewModels
             set { SetProperty(ref _Mov, value); }
         }
 
-        //String _MovieTitle;
         public String MovieTitle
         {
             get { return myMovie.title; }
@@ -73,22 +71,13 @@ namespace OMDBApiMobileAppsProject.ViewModels
             if (SelectedIndex != -1)
             {
                 var mov = Titles[SelectedIndex];
-                Titles.RemoveAt(SelectedIndex);
-                // myMovie.Delete(person);
+                Titles.RemoveAt(SelectedIndex);    
             }
         }
 
         public void Save()
         {
-            if (SelectedIndex != -1)
-            {
-                var mov = Titles[SelectedIndex];
-                //Titles.RemoveAt(SelectedIndex);
-                // myMovie.Delete(person);
-                Debug.WriteLine("Save to local");
-                Debug.WriteLine(mov.Title);
-
-            }
+            
         }
 
         void Movie_OnNotifyPropertyChanged(Object sender, PropertyChangedEventArgs e)
@@ -99,7 +88,6 @@ namespace OMDBApiMobileAppsProject.ViewModels
 
         public async Task Refresh()
         {
-            //Debug.WriteLine("[REFRESH]");
             //notify view 
             foreach (var myMovie in myMovie.Titles)
              {
@@ -111,18 +99,9 @@ namespace OMDBApiMobileAppsProject.ViewModels
 
         }//end refresh
 
-        public void SaveNew() {
-            if (SelectedIndex != -1)
-            {
-                var mov = Titles[SelectedIndex];
-                //Titles.RemoveAt(SelectedIndex);
-                // myMovie.Delete(person);
-                Debug.WriteLine("Save to local");
-                Debug.WriteLine(mov.Title);
-
-            }
-        }
-
+        public async void SaveNew() {
+            await myMovie.saveMovies();
+        }//end SaveNew
 
     }
 }

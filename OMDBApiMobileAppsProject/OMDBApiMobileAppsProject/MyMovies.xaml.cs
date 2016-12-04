@@ -28,6 +28,5 @@ namespace OMDBApiMobileAppsProject
 
         public TitleVM viewTitles { get; set; }
 
-        
     }
 }

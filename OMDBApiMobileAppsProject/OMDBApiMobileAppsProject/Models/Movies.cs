@@ -1,11 +1,14 @@
-﻿using OMDBApiMobileAppsProject.Data;
+﻿using Newtonsoft.Json;
+using OMDBApiMobileAppsProject.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel;
 using Windows.Data.Json;
 using Windows.Storage;
+
+//using System.Web.Script.Serialization;
 
 namespace OMDBApiMobileAppsProject.Models
 {
@@ -17,13 +20,31 @@ namespace OMDBApiMobileAppsProject.Models
 
         public Movies()
         {
-            LoadData();
             Titles = movieList;
+            init(Titles);
+        }
+
+        public static async Task init(List<Movie> Titles)
+        {
+            if (movieList.Count != 0)
+            {
+                // movieList.Clear();
+                Debug.WriteLine("[movie list not empty]: " + movieList.Count);
+                movieList = new List<Movie>();
+                LoadData();
+                Titles = movieList;
+            }
+            else
+            {
+                Debug.WriteLine("[Movie list is empty]: ");
+                LoadData();
+                Titles = movieList;
+            }
         }
 
         public static async Task LoadData()
         {
-            await LoadLocalMovies(); 
+            await LoadLocalMovies();  
         }
 
         public static async Task LoadLocalMovies()
@@ -39,7 +60,7 @@ namespace OMDBApiMobileAppsProject.Models
             CreateMovieList(jMovieList);
         }
 
-
+        //adds JsonArray to a List of Movies
         private static void CreateMovieList(JsonArray jMovieList)
         {
             foreach (var item in jMovieList)
@@ -56,46 +77,46 @@ namespace OMDBApiMobileAppsProject.Models
                     switch (key)
                     {
                         case "Title":
-                            nMovie.title = value.GetString();
+                            nMovie.Title = value.GetString();
                             break;
                         case "Year":
-                            nMovie.year = value.GetString();
+                            nMovie.Year = value.GetString();
                             break;    
                         case "Rated":
-                            nMovie.rated = value.GetString();
+                            nMovie.Rated = value.GetString();
                             break;
                         case "Runtime":
-                            nMovie.runtime = value.GetString();
+                            nMovie.Runtime = value.GetString();
                             break;
                         case "Genre":
-                            nMovie.genre = value.GetString();
+                            nMovie.Genre = value.GetString();
                             break;
                         case "Director":
-                            nMovie.director = value.GetString();
+                            nMovie.Director = value.GetString();
                             break;
                         case "Writer":
-                            nMovie.writer = value.GetString();
+                            nMovie.Writer = value.GetString();
                             break;
                         case "Actors":
-                            nMovie.actors = value.GetString();
+                            nMovie.Actors = value.GetString();
                             break;
                         case "Plot":
-                            nMovie.plot = value.GetString();
+                            nMovie.Plot = value.GetString();
                             break;
                         case "Language":
-                            nMovie.language = value.GetString();
+                            nMovie.Language = value.GetString();
                             break;
                         case "Country":
-                            nMovie.country = value.GetString();
+                            nMovie.Country = value.GetString();
                             break;
                         case "Awards":
-                            nMovie.awards = value.GetString();
+                            nMovie.Awards = value.GetString();
                             break;
                         case "Poster":
-                            nMovie.poster = value.GetString();
+                            nMovie.Poster = value.GetString();
                             break;
                         case "Metascore":
-                            nMovie.metascore = value.GetString();
+                            nMovie.Metascore = value.GetString();
                             break;
                         case "imdbRating":
                             nMovie.imdbRating = value.GetString();
@@ -108,13 +129,10 @@ namespace OMDBApiMobileAppsProject.Models
 
         public void Add(Movie movie)
         {
-            Debug.WriteLine("[IN ADD]: ");
             if (!Titles.Contains(movie))
             {
-                Debug.WriteLine("[IN ADD IF]: ");
-                movie.poster = "";
+                movie.Poster = "";
                 Titles.Add(movie);
-                //FakeService.Write(movie);
             }
         }//end add
 
@@ -122,17 +140,69 @@ namespace OMDBApiMobileAppsProject.Models
         {
             if (Titles.Contains(movie))
             {
-                Titles.Remove(movie);
-                //FakeService.Delete(movie);
+                Titles.Remove(movie);     
             }
         }//end delete
 
         public void Update(Movie movie)
         {
-            //FakeService.Write(movie);
+            
         }//end update
 
-    }//end Movies
+        public async void Save(Movie movie)
+        {
+     
+        }//end add
+
+        public async void SaveAll()
+        {
+            Debug.WriteLine("[IN SaveAll]: ");
+            await saveMovies();
+        }//end saveAll
+
+        //saves Movies To Local Storage
+        public async Task saveMovies()
+        {
+            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            StorageFile movieFile;
+
+            //get movie file 
+            movieFile = await storageFolder.CreateFileAsync("MyMovies.txt", CreationCollisionOption.OpenIfExists);
+         
+            string output;
+
+            StringBuilder sb = new StringBuilder();
+            //start of array
+            sb.Append("[");
+
+            int count = 0;
+            foreach (var item in Titles)
+            {
+                if (count ==0) {
+                    output = JsonConvert.SerializeObject(item);
+                    sb.Append(output);
+
+                }
+                //, needed when not first in array
+                else {
+                    output = JsonConvert.SerializeObject(item);
+                    sb.Append(","+output);
+                }//end else
+
+                count++;
+
+            }//end foreach
+
+            sb.Append("]");
+
+            //Debug.WriteLine("[Serialized Object]: " + sb.ToString());
+
+            //save to file 
+            await FileIO.WriteTextAsync(movieFile, sb.ToString());  
+
+        }//end saveMovies
+
+    }//end saveMovies
 }
 
 

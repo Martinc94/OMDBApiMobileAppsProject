@@ -8,20 +8,20 @@ namespace OMDBApiMobileAppsProject.Data
 {
     public class Movie
     {
-        public string title { get; set; }
-        public string year { get; set; }
-        public string rated { get; set; }
-        public string runtime { get; set; }
-        public string genre { get; set; }
-        public string director { get; set; }
-        public string writer { get; set; }
-        public string actors { get; set; }
-        public string plot { get; set; }
-        public string language { get; set; }
-        public string country { get; set; }
-        public string awards { get; set; }
-        public string poster { get; set; }
-        public string metascore { get; set; }
+        public string Title { get; set; }
+        public string Year { get; set; }
+        public string Rated { get; set; }
+        public string Runtime { get; set; }
+        public string Genre { get; set; }
+        public string Director { get; set; }
+        public string Writer { get; set; }
+        public string Actors { get; set; }
+        public string Plot { get; set; }
+        public string Language { get; set; }
+        public string Country { get; set; }
+        public string Awards { get; set; }
+        public string Poster { get; set; }
+        public string Metascore { get; set; }
         public string imdbRating { get; set; }
    
     }
